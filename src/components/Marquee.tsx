@@ -4,7 +4,7 @@ export default function Marquee() {
   const serviceNames = services.map(s => s.title)
 
   return (
-    <div className="overflow-hidden bg-[#1E1A16] py-5">
+    <div className="overflow-hidden bg-[#1E1A16] py-8">
       <style>{`
         @keyframes marquee {
           0% {
