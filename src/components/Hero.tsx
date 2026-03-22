@@ -1,74 +1,145 @@
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Phone } from 'lucide-react'
+import { ArrowRight, Star } from 'lucide-react'
 import { scrollToSection } from '@/lib/smoothScroll'
 
 export default function Hero() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 },
+  }
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
-      {/* Background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          // TODO: nahradit reálnou fotkou
-          backgroundImage: 'url(https://picsum.photos/id/1067/1920/1080)',
-        }}
-      />
-
-      {/* Glassmorphism overlay */}
-      <div className="absolute inset-0 bg-[#0F172A]/75 backdrop-blur-sm" />
-
-      {/* Gradient bottom */}
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0F172A] to-transparent" />
-
-      <div className="relative z-10 mx-auto max-w-4xl px-4 text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="mb-6 text-4xl font-bold leading-tight tracking-tight text-[#F8FAFC] md:text-6xl lg:text-7xl"
-        >
-          Stavíme s{' '}
-          <span className="text-[#3B82F6]">precizností</span>
-          ,<br />
-          rekonstruujeme s{' '}
-          <span className="text-[#3B82F6]">vášní</span>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="mx-auto mb-10 max-w-2xl text-lg text-[#94A3B8] md:text-xl"
-        >
-          Profesionální stavební práce a rekonstrukce. Od koupelen přes podlahy až po
-          kompletní přestavby bytů — vše na klíč s důrazem na kvalitu.
-        </motion.p>
-
+    <section className="relative bg-[#FAF7F2] py-20 md:py-32">
+      <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-4 md:px-8">
+        {/* Left side */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="flex flex-col items-center justify-center gap-4 sm:flex-row"
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+          className="space-y-8"
         >
-          <Button
-            size="lg"
-            onClick={() => scrollToSection('#kontakt')}
-            className="bg-[#1D4ED8] px-8 text-base text-white hover:bg-[#3B82F6]"
+          {/* Badge */}
+          <motion.div variants={itemVariants} className="inline-block">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#F0D5C4] px-4 py-2">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#8B3F18]">
+                Stavba na klíč
+              </span>
+            </div>
+          </motion.div>
+
+          {/* H1 */}
+          <motion.h1
+            variants={itemVariants}
+            className="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.95] tracking-tighter text-[#1E1A16]"
           >
-            Nezávazná poptávka
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            onClick={() => scrollToSection('#sluzby')}
-            className="border-[#334155] px-8 text-base text-[#F8FAFC] hover:bg-[#1E293B]"
+            Stavíme s{' '}
+            <span className="text-[#C4602A]">precizností</span>,<br />
+            rekonstruujeme s{' '}
+            <span className="text-[#C4602A]">vášní</span>
+          </motion.h1>
+
+          {/* Perex */}
+          <motion.p
+            variants={itemVariants}
+            className="text-lg leading-relaxed text-[#5A5046] max-w-xl"
           >
-            <Phone className="mr-2 h-4 w-4" />
-            Naše služby
-          </Button>
+            Profesionální stavební práce a rekonstrukce. Od koupelen přes podlahy až po kompletní
+            přestavby bytů — vše na klíč s důrazem na kvalitu.
+          </motion.p>
+
+          {/* Buttons */}
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
+            <Button
+              size="lg"
+              onClick={() => scrollToSection('#kontakt')}
+              className="bg-[#C4602A] text-white font-bold hover:bg-[#8B3F18] transition-all hover:-translate-y-0.5"
+            >
+              Nezávazná poptávka
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              onClick={() => scrollToSection('#sluzby')}
+              className="border border-[#E8E0D2] bg-transparent text-[#1E1A16] hover:bg-[#F0D5C4]"
+            >
+              Naše služby
+            </Button>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div variants={itemVariants} className="flex gap-8 pt-8">
+            <div>
+              <div className="text-3xl md:text-4xl font-black text-[#1E1A16] tracking-tighter">
+                250<span className="text-[#C4602A]">+</span>
+              </div>
+              <div className="text-xs font-bold uppercase tracking-widest text-[#9C9080] mt-1">
+                Dokončených projektů
+              </div>
+            </div>
+            <div>
+              <div className="text-3xl md:text-4xl font-black text-[#1E1A16] tracking-tighter">
+                15
+              </div>
+              <div className="text-xs font-bold uppercase tracking-widest text-[#9C9080] mt-1">
+                Let zkušeností
+              </div>
+            </div>
+            <div>
+              <div className="text-3xl md:text-4xl font-black text-[#1E1A16] tracking-tighter">
+                500<span className="text-[#C4602A]">+</span>
+              </div>
+              <div className="text-xs font-bold uppercase tracking-widest text-[#9C9080] mt-1">
+                Spokojených klientů
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Right side - Image + Floating card */}
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          animate="show"
+          className="relative"
+        >
+          <div className="relative rounded-3xl overflow-hidden aspect-square md:aspect-auto md:h-[600px]">
+            <img
+              src="https://picsum.photos/id/1067/800/600"
+              alt="Stavební práce"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1E1A16]/20 to-transparent" />
+          </div>
+
+          {/* Floating review card */}
+          <motion.div
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 4, repeat: Infinity }}
+            className="absolute -bottom-6 -right-6 bg-[#FFFDF9] rounded-2xl p-6 shadow-lg border border-[#E8E0D2] max-w-xs"
+          >
+            <div className="flex items-center gap-1 mb-3">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} size={16} className="fill-[#C4602A] text-[#C4602A]" />
+              ))}
+            </div>
+            <p className="text-sm leading-relaxed text-[#1E1A16] mb-3">
+              "Výborná komunikace, precizní práce a dodrženého termínu. Velmi doporučujeme!"
+            </p>
+            <p className="text-sm font-bold text-[#1E1A16]">Martin Svoboda</p>
+            <p className="text-xs text-[#9C9080]">Praha</p>
+          </motion.div>
         </motion.div>
       </div>
     </section>

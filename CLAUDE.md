@@ -51,3 +51,8 @@ npm run build  # Production build
 - Logo: public/logo.svg (zdroj: brand_assets/logo.svg)
 - Font: Inter (Google Fonts)
 - Vždy dark mode, nepoužívat light mode
+
+## Git & Deployment
+- **Po každém větším úkolu/feature** → push na GitHub (`git add .` → `git commit -m "..."` → `git push`)
+- Repository: https://github.com/pabysak1-maker/zajda-web
+- Deployment: Vercel (auto-deploy z main branche)

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -12,6 +12,15 @@ const navLinks = [
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const scrollTo = (href: string) => {
     setMobileOpen(false)
@@ -19,10 +28,17 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-[#334155] bg-[#0F172A]/80 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-8">
+    <nav
+      className={`sticky top-0 z-50 bg-[#FAF7F2]/92 backdrop-blur-[12px] transition-all ${
+        scrolled ? 'border-b border-[#E8E0D2]' : 'border-b border-transparent'
+      }`}
+    >
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
         <a href="#" onClick={(e) => { e.preventDefault(); smoothScroll(0) }}>
-          <img src="/logo.svg" alt="KZ Rekonstrukce" className="h-10" />
+          <div className="flex items-center gap-2 font-black tracking-tight text-[#1E1A16]">
+            <span>●</span>
+            <span className="text-[#C4602A]">KZ</span>
+          </div>
         </a>
 
         {/* Desktop nav */}
@@ -31,22 +47,22 @@ export default function Navbar() {
             <button
               key={link.href}
               onClick={() => scrollTo(link.href)}
-              className="text-sm font-medium text-[#94A3B8] transition-colors hover:text-[#F8FAFC]"
+              className="text-sm font-medium text-[#5A5046] transition-colors hover:text-[#1E1A16]"
             >
               {link.label}
             </button>
           ))}
           <Button
             onClick={() => scrollTo('#kontakt')}
-            className="bg-[#1D4ED8] text-white hover:bg-[#3B82F6]"
+            className="bg-[#1E1A16] text-white font-bold hover:bg-[#C4602A] transition-colors"
           >
-            Nezávazná poptávka
+            Poptávka zdarma
           </Button>
         </div>
 
         {/* Mobile toggle */}
         <button
-          className="text-[#F8FAFC] md:hidden"
+          className="text-[#1E1A16] md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -61,23 +77,23 @@ export default function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden border-t border-[#334155] md:hidden"
+            className="overflow-hidden border-t border-[#E8E0D2] md:hidden"
           >
-            <div className="flex flex-col gap-4 px-4 py-6">
+            <div className="flex flex-col gap-4 px-4 py-6 bg-[#FAF7F2]">
               {navLinks.map((link) => (
                 <button
                   key={link.href}
                   onClick={() => scrollTo(link.href)}
-                  className="text-left text-sm font-medium text-[#94A3B8] transition-colors hover:text-[#F8FAFC]"
+                  className="text-left text-sm font-medium text-[#5A5046] transition-colors hover:text-[#1E1A16]"
                 >
                   {link.label}
                 </button>
               ))}
               <Button
                 onClick={() => scrollTo('#kontakt')}
-                className="w-full bg-[#1D4ED8] text-white hover:bg-[#3B82F6]"
+                className="w-full bg-[#1E1A16] text-white font-bold hover:bg-[#C4602A]"
               >
-                Nezávazná poptávka
+                Poptávka zdarma
               </Button>
             </div>
           </motion.div>

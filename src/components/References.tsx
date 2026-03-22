@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Badge } from '@/components/ui/badge'
 import { projects } from '@/data/projects'
 import type { Project } from '@/data/projects'
 import ReferenceLightbox from './ReferenceLightbox'
@@ -29,24 +28,26 @@ export default function References() {
   }
 
   return (
-    <section id="reference" className="relative py-20 md:py-28">
-      {/* Gradient divider top */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#1D4ED8]/50 to-transparent" />
-
+    <section id="reference" className="relative py-20 md:py-32 bg-[#FAF7F2]">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-16"
         >
-          <h2 className="mb-4 text-3xl font-bold text-[#F8FAFC] md:text-4xl">
-            Naše <span className="text-[#3B82F6]">reference</span>
+          {/* Section tag */}
+          <div className="inline-flex items-center gap-2 mb-6">
+            <div className="w-6 h-0.5 bg-[#C4602A] rounded-full"></div>
+            <span className="text-xs font-bold uppercase tracking-widest text-[#C4602A]">
+              Naše reference
+            </span>
+          </div>
+
+          <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-[#1E1A16]">
+            Realizované projekty
           </h2>
-          <p className="mx-auto max-w-2xl text-[#94A3B8]">
-            Přesvědčte se o kvalitě naší práce. Vybrané projekty z posledních let.
-          </p>
         </motion.div>
 
         <motion.div
@@ -61,27 +62,36 @@ export default function References() {
               key={project.id}
               variants={cardVariants}
               onClick={() => openLightbox(project)}
-              className="group cursor-pointer overflow-hidden rounded-2xl border border-[#334155] bg-[#1E293B] transition-all duration-300 hover:scale-[1.02] hover:border-[#1D4ED8]/50 hover:shadow-[0_0_30px_-5px_rgba(29,78,216,0.3)]"
+              className="group cursor-pointer overflow-hidden rounded-3xl border border-[#E8E0D2] bg-[#FFFDF9] transition-all duration-300 hover:border-[#C4602A] hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(196,96,42,0.12)]"
             >
-              <div className="relative overflow-hidden">
+              <div className="relative overflow-hidden aspect-[3/2]">
                 <img
                   src={project.cover.url}
                   alt={project.title}
-                  className="aspect-[3/2] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1E293B] via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1E1A16]/40 via-transparent to-transparent" />
               </div>
-              <div className="p-5">
-                <div className="mb-2 flex items-center gap-2">
-                  <Badge className="bg-[#1D4ED8]/20 text-[#3B82F6]">
+              <div className="p-6">
+                <div className="mb-3 flex items-center gap-2 flex-wrap">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-[#F0D5C4] px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#8B3F18]">
                     {project.type}
-                  </Badge>
-                  <span className="text-xs text-[#94A3B8]">{project.year}</span>
+                  </span>
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#9C9080]">
+                    {project.year}
+                  </span>
                 </div>
-                <h3 className="mb-1 text-lg font-semibold text-[#F8FAFC]">
+                <h3 className="mb-2 text-lg font-bold text-[#1E1A16] group-hover:text-[#C4602A] transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-sm text-[#94A3B8]">{project.description}</p>
+                <p className="text-sm leading-relaxed text-[#5A5046]">
+                  {project.description}
+                </p>
+                {project.scope && (
+                  <p className="text-xs text-[#9C9080] mt-3">
+                    Rozsah: {project.scope}
+                  </p>
+                )}
               </div>
             </motion.div>
           ))}
