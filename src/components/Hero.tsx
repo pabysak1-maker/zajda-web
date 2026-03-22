@@ -41,7 +41,7 @@ export default function Hero() {
           {/* H1 */}
           <motion.h1
             variants={itemVariants}
-            className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-wide text-[#1E1A16]"
+            className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight text-[#1E1A16]"
           >
             Stavíme s{' '}
             <span className="text-[#C4602A]">precizností</span>,<br />
