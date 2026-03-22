@@ -2,7 +2,6 @@ import { services } from '@/data/services'
 
 export default function Marquee() {
   const serviceNames = services.map(s => s.title)
-  const marqueeText = serviceNames.join(' ● ')
 
   return (
     <div className="overflow-hidden bg-[#1E1A16] py-5">
@@ -30,21 +29,36 @@ export default function Marquee() {
           text-transform: uppercase;
           color: rgba(255, 255, 255, 0.4);
           flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          gap: 12px;
         }
 
         .marquee-dot {
-          color: #C4602A;
-          margin: 0 8px;
+          color: #C4602A !important;
+          font-size: 16px;
+          line-height: 1;
+          font-weight: 900;
         }
       `}</style>
 
       <div className="marquee-container">
-        <span className="marquee-text">
-          {marqueeText}
-        </span>
-        <span className="marquee-text">
-          {marqueeText}
-        </span>
+        <div className="marquee-text">
+          {serviceNames.map((name, idx) => (
+            <span key={`track1-${idx}`}>
+              {name}
+              {idx < serviceNames.length - 1 && <span className="marquee-dot">●</span>}
+            </span>
+          ))}
+        </div>
+        <div className="marquee-text">
+          {serviceNames.map((name, idx) => (
+            <span key={`track2-${idx}`}>
+              {name}
+              {idx < serviceNames.length - 1 && <span className="marquee-dot">●</span>}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   )

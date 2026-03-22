@@ -78,33 +78,6 @@ export default function Hero() {
             </Button>
           </motion.div>
 
-          {/* Stats */}
-          <motion.div variants={itemVariants} className="grid grid-cols-3 gap-6 pt-8 border-t border-[#E8E0D2]">
-            <div>
-              <div className="text-2xl md:text-3xl font-black text-[#1E1A16] tracking-tighter leading-none">
-                250<span className="text-[#C4602A]">+</span>
-              </div>
-              <div className="text-xs font-bold uppercase tracking-widest text-[#9C9080] mt-2">
-                Projektů
-              </div>
-            </div>
-            <div>
-              <div className="text-2xl md:text-3xl font-black text-[#1E1A16] tracking-tighter leading-none">
-                15
-              </div>
-              <div className="text-xs font-bold uppercase tracking-widest text-[#9C9080] mt-2">
-                Let praxe
-              </div>
-            </div>
-            <div>
-              <div className="text-2xl md:text-3xl font-black text-[#1E1A16] tracking-tighter leading-none">
-                500<span className="text-[#C4602A]">+</span>
-              </div>
-              <div className="text-xs font-bold uppercase tracking-widest text-[#9C9080] mt-2">
-                Klientů
-              </div>
-            </div>
-          </motion.div>
         </motion.div>
 
         {/* Right side - Image */}

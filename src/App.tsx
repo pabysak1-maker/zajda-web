@@ -2,7 +2,6 @@ import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import Marquee from '@/components/Marquee'
 import Services from '@/components/Services'
-import WhyUs from '@/components/WhyUs'
 import Process from '@/components/Process'
 import References from '@/components/References'
 import Contact from '@/components/Contact'
@@ -15,7 +14,6 @@ export default function App() {
       <Hero />
       <Marquee />
       <Services />
-      <WhyUs />
       <Process />
       <References />
       <Contact />
