@@ -2,63 +2,45 @@ import { services } from '@/data/services'
 
 export default function Marquee() {
   const serviceNames = services.map(s => s.title)
+  const separator = ' \u00A0\u00A0●\u00A0\u00A0 '
+  const track = serviceNames.join(separator) + separator
 
   return (
-    <div className="overflow-hidden bg-[#1E1A16] py-8">
+    <div className="overflow-hidden bg-[#1E1A16] py-5">
       <style>{`
         @keyframes marquee {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
         }
 
-        .marquee-container {
+        .marquee-track {
           display: flex;
           white-space: nowrap;
-          animation: marquee 80s linear infinite;
-          gap: 48px;
+          animation: marquee 40s linear infinite;
         }
 
-        .marquee-text {
+        .marquee-segment {
+          font-family: 'Barlow', sans-serif;
           font-weight: 700;
           font-size: 13px;
           letter-spacing: 0.1em;
           text-transform: uppercase;
           color: rgba(255, 255, 255, 0.4);
           flex-shrink: 0;
-          display: flex;
-          align-items: center;
-          gap: 20px;
         }
 
-        .marquee-dot {
-          color: #C4602A !important;
-          font-size: 16px;
-          line-height: 1;
-          font-weight: 900;
+        .marquee-segment .dot {
+          color: #C4602A;
         }
       `}</style>
 
-      <div className="marquee-container">
-        <div className="marquee-text">
-          {serviceNames.map((name, idx) => (
-            <span key={`track1-${idx}`}>
-              {name}
-              {idx < serviceNames.length - 1 && <span className="marquee-dot">●</span>}
-            </span>
-          ))}
-        </div>
-        <div className="marquee-text">
-          {serviceNames.map((name, idx) => (
-            <span key={`track2-${idx}`}>
-              {name}
-              {idx < serviceNames.length - 1 && <span className="marquee-dot">●</span>}
-            </span>
-          ))}
-        </div>
+      <div className="marquee-track">
+        <span className="marquee-segment" dangerouslySetInnerHTML={{
+          __html: track.replace(/●/g, '<span class="dot">●</span>')
+        }} />
+        <span className="marquee-segment" dangerouslySetInnerHTML={{
+          __html: track.replace(/●/g, '<span class="dot">●</span>')
+        }} />
       </div>
     </div>
   )
