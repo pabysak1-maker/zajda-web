@@ -19,7 +19,7 @@ export default function Marquee() {
           display: flex;
           white-space: nowrap;
           animation: marquee 80s linear infinite;
-          gap: 32px;
+          gap: 48px;
         }
 
         .marquee-text {
@@ -31,7 +31,7 @@ export default function Marquee() {
           flex-shrink: 0;
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: 20px;
         }
 
         .marquee-dot {
