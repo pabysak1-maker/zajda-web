@@ -2,9 +2,10 @@ import { services } from '@/data/services'
 
 export default function Marquee() {
   const serviceNames = services.map(s => s.title)
+  const marqueeText = serviceNames.join(' ● ')
 
   return (
-    <div className="overflow-hidden bg-[#1E1A16] py-4">
+    <div className="overflow-hidden bg-[#1E1A16] py-5">
       <style>{`
         @keyframes marquee {
           0% {
@@ -15,44 +16,35 @@ export default function Marquee() {
           }
         }
 
-        .marquee-track {
+        .marquee-container {
           display: flex;
-          gap: 32px;
-          animation: marquee 60s linear infinite;
           white-space: nowrap;
+          animation: marquee 80s linear infinite;
+          gap: 32px;
         }
 
-        .marquee-item {
+        .marquee-text {
           font-weight: 700;
-          font-size: 12px;
-          letter-spacing: 0.08em;
+          font-size: 13px;
+          letter-spacing: 0.1em;
           text-transform: uppercase;
-          color: rgba(255, 255, 255, 0.5);
+          color: rgba(255, 255, 255, 0.4);
           flex-shrink: 0;
-          display: flex;
-          align-items: center;
-          gap: 12px;
         }
 
         .marquee-dot {
           color: #C4602A;
-          font-size: 14px;
-          line-height: 1;
+          margin: 0 8px;
         }
       `}</style>
 
-      <div className="marquee-track">
-        {[0, 1].map((track) => (
-          <div key={track}>
-            {serviceNames.map((name, idx) => (
-              <span key={`${track}-${idx}`} className="marquee-item">
-                {name}
-                {idx < serviceNames.length - 1 && <span className="marquee-dot">●</span>}
-              </span>
-            ))}
-            {<span className="marquee-dot">●</span>}
-          </div>
-        ))}
+      <div className="marquee-container">
+        <span className="marquee-text">
+          {marqueeText}
+        </span>
+        <span className="marquee-text">
+          {marqueeText}
+        </span>
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Star } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { scrollToSection } from '@/lib/smoothScroll'
 
 export default function Hero() {
@@ -79,42 +79,42 @@ export default function Hero() {
           </motion.div>
 
           {/* Stats */}
-          <motion.div variants={itemVariants} className="flex gap-8 pt-8">
+          <motion.div variants={itemVariants} className="grid grid-cols-3 gap-6 pt-8 border-t border-[#E8E0D2]">
             <div>
-              <div className="text-3xl md:text-4xl font-black text-[#1E1A16] tracking-tighter">
+              <div className="text-2xl md:text-3xl font-black text-[#1E1A16] tracking-tighter leading-none">
                 250<span className="text-[#C4602A]">+</span>
               </div>
-              <div className="text-xs font-bold uppercase tracking-widest text-[#9C9080] mt-1">
-                Dokončených projektů
+              <div className="text-xs font-bold uppercase tracking-widest text-[#9C9080] mt-2">
+                Projektů
               </div>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-black text-[#1E1A16] tracking-tighter">
+              <div className="text-2xl md:text-3xl font-black text-[#1E1A16] tracking-tighter leading-none">
                 15
               </div>
-              <div className="text-xs font-bold uppercase tracking-widest text-[#9C9080] mt-1">
-                Let zkušeností
+              <div className="text-xs font-bold uppercase tracking-widest text-[#9C9080] mt-2">
+                Let praxe
               </div>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-black text-[#1E1A16] tracking-tighter">
+              <div className="text-2xl md:text-3xl font-black text-[#1E1A16] tracking-tighter leading-none">
                 500<span className="text-[#C4602A]">+</span>
               </div>
-              <div className="text-xs font-bold uppercase tracking-widest text-[#9C9080] mt-1">
-                Spokojených klientů
+              <div className="text-xs font-bold uppercase tracking-widest text-[#9C9080] mt-2">
+                Klientů
               </div>
             </div>
           </motion.div>
         </motion.div>
 
-        {/* Right side - Image + Floating card */}
+        {/* Right side - Image */}
         <motion.div
           variants={itemVariants}
           initial="hidden"
           animate="show"
           className="relative"
         >
-          <div className="relative rounded-3xl overflow-hidden aspect-square md:aspect-auto md:h-[600px]">
+          <div className="relative rounded-3xl overflow-hidden aspect-square md:aspect-auto md:h-[500px]">
             <img
               src="https://picsum.photos/id/1067/800/600"
               alt="Stavební práce"
@@ -122,24 +122,6 @@ export default function Hero() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#1E1A16]/20 to-transparent" />
           </div>
-
-          {/* Floating review card */}
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity }}
-            className="absolute -bottom-6 -right-6 bg-[#FFFDF9] rounded-2xl p-6 shadow-lg border border-[#E8E0D2] max-w-xs"
-          >
-            <div className="flex items-center gap-1 mb-3">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={16} className="fill-[#C4602A] text-[#C4602A]" />
-              ))}
-            </div>
-            <p className="text-sm leading-relaxed text-[#1E1A16] mb-3">
-              "Výborná komunikace, precizní práce a dodrženého termínu. Velmi doporučujeme!"
-            </p>
-            <p className="text-sm font-bold text-[#1E1A16]">Martin Svoboda</p>
-            <p className="text-xs text-[#9C9080]">Praha</p>
-          </motion.div>
         </motion.div>
       </div>
     </section>
