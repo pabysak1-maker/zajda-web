@@ -26,10 +26,7 @@ export default function Footer() {
               smoothScroll(0)
             }}
           >
-            <div className="flex items-center gap-2 font-black tracking-tight text-white">
-              <span className="text-[#C4602A]">●</span>
-              <span>KZ</span>
-            </div>
+            <img src="/logo.svg" alt="KZ Rekonstrukce" className="h-10 md:h-12 w-auto" />
           </a>
 
           {/* Nav */}

@@ -35,10 +35,7 @@ export default function Navbar() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
         <a href="#" onClick={(e) => { e.preventDefault(); smoothScroll(0) }}>
-          <div className="flex items-center gap-2 font-black tracking-tight text-[#1E1A16]">
-            <span>●</span>
-            <span className="text-[#C4602A]">KZ</span>
-          </div>
+          <img src="/logo.svg" alt="KZ Rekonstrukce" className="h-12 md:h-14 w-auto" />
         </a>
 
         {/* Desktop nav */}
